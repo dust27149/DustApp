@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/ic_logo_round"
+        android:contentDescription="@string/setting"
+        app:layout_constraintBottom_toTopOf="@id/fragment_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <FrameLayout
+        android:id="@+id/fragment_login"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/third_party_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <TextView
+        android:id="@+id/tv_login_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/sms_login"
+        app:layout_constraintBottom_toTopOf="@+id/third_party_login"
+        app:layout_constraintRight_toLeftOf="@+id/tv_register"
+        app:layout_constraintStart_toStartOf="@+id/fragment_login"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/register"
+        app:layout_constraintBottom_toTopOf="@+id/third_party_login"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_login"
+        app:layout_constraintLeft_toRightOf="@id/tv_login_type"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login" />
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        app:layout_constraintCircle="@+id/third_party_login"
+        app:layout_constraintCircleAngle="270"
+        app:layout_constraintCircleRadius="100dp"
+        app:layout_constraintRight_toLeftOf="@+id/third_party_login"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login" />
+
+    <TextView
+        android:id="@+id/third_party_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/third_party_login"
+        app:layout_constraintBottom_toTopOf="@+id/iv_wx_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login" />
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        app:layout_constraintCircle="@+id/third_party_login"
+        app:layout_constraintCircleAngle="90"
+        app:layout_constraintCircleRadius="100dp"
+        app:layout_constraintLeft_toRightOf="@+id/third_party_login"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login" />
+
+    <ImageView
+        android:id="@+id/iv_wx_login"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_login_wx"
+        android:contentDescription="@string/login_we_chat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_party_login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

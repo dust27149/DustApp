@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path
+        name="file_path"
+        path="." />
+    <external-path
+        name="update_file"
+        path="Android/data/com.dust.app/files/update" />
+    <external-path
+        name="map_tiles"
+        path="Android/data/com.dust.app/files/resources/map/tiles" />
+    <external-path
+        name="map_shape_file"
+        path="Android/data/com.dust.app/files/resources/map/shape_files" />
+</paths>
