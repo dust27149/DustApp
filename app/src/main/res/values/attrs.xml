@@ -5,6 +5,8 @@
         <attr name="strokeWidth" format="dimension" />
         <attr name="strokeHeight" format="dimension" />
         <attr name="strokePadding" format="dimension" />
+        <attr name="strokeError" format="reference" />
         <attr name="strokeBackground" format="reference" />
+        <attr name="strokeForeground" format="reference" />
     </declare-styleable>
 </resources>

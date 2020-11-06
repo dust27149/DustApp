@@ -15,11 +15,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dust.app.R;
+import com.dust.app.activity.fragment.InfoFragment;
+import com.dust.app.activity.fragment.MapFragment;
+import com.dust.app.activity.fragment.MineFragment;
+import com.dust.app.activity.fragment.TaskFragment;
 import com.dust.app.databinding.ActivityMainBinding;
-import com.dust.app.fragment.InfoFragment;
-import com.dust.app.fragment.MapFragment;
-import com.dust.app.fragment.MineFragment;
-import com.dust.app.fragment.TaskFragment;
 import com.dust.app.service.GPSService;
 import com.dust.app.service.MQTTService;
 import com.tbruyelle.rxpermissions3.RxPermissions;

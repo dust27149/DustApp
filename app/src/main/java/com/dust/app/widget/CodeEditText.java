@@ -9,42 +9,38 @@ import android.graphics.drawable.Drawable;
 import android.text.InputFilter;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
 import com.dust.app.R;
 
+import static android.view.animation.Animation.REVERSE;
+
 public class CodeEditText extends AppCompatEditText {
 
-    private int mTextColor;
+    public interface OnTextChangeListener {
 
-    public interface OnTextFinishListener {
+        void onTextChange(CharSequence text, int length);
+
         void onTextFinish(CharSequence text, int length);
+
     }
 
-    // 输入的最大长度
-    private int mMaxLength = 4;
-    // 边框宽度
-    private int mStrokeWidth;
-    // 边框高度
-    private int mStrokeHeight;
-    // 边框之间的距离
-    private int mStrokePadding = 20;
+    private int textColor;
+    private int maxLength = 4;
+    private int strokeWidth;
+    private int strokeHeight;
+    private int strokePadding = 20;
+    private final Rect rect = new Rect();
+    private OnTextChangeListener onTextChangeListener;
+    private Drawable stokeError;
+    private Drawable strokeActive;
+    private Drawable strokeBackground;
+    private Drawable strokeForeground;
 
-    private final Rect mRect = new Rect();
-
-    /**
-     * 输入结束监听
-     */
-    private OnTextFinishListener mOnInputFinishListener;
-
-    // 方框的背景
-    private Drawable mStrokeDrawable;
-
-    /**
-     * 构造方法
-     */
     public CodeEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CodeEditText);
@@ -52,26 +48,34 @@ public class CodeEditText extends AppCompatEditText {
         for (int i = 0; i < indexCount; i++) {
             int index = typedArray.getIndex(i);
             if (index == R.styleable.CodeEditText_strokeHeight) {
-                this.mStrokeHeight = (int) typedArray.getDimension(index, 60);
+                strokeHeight = (int) typedArray.getDimension(index, 60);
             } else if (index == R.styleable.CodeEditText_strokeWidth) {
-                this.mStrokeWidth = (int) typedArray.getDimension(index, 60);
+                strokeWidth = (int) typedArray.getDimension(index, 60);
             } else if (index == R.styleable.CodeEditText_strokePadding) {
-                this.mStrokePadding = (int) typedArray.getDimension(index, 20);
+                strokePadding = (int) typedArray.getDimension(index, 20);
             } else if (index == R.styleable.CodeEditText_strokeBackground) {
-                this.mStrokeDrawable = typedArray.getDrawable(index);
+                strokeBackground = typedArray.getDrawable(index);
             } else if (index == R.styleable.CodeEditText_strokeLength) {
-                this.mMaxLength = typedArray.getInteger(index, 4);
+                maxLength = typedArray.getInteger(index, 4);
+            } else if (index == R.styleable.CodeEditText_strokeForeground) {
+                strokeForeground = strokeActive = typedArray.getDrawable(index);
+            } else if (index == R.styleable.CodeEditText_strokeError) {
+                stokeError = typedArray.getDrawable(index);
             }
         }
         typedArray.recycle();
-        if (mStrokeDrawable == null) {
-            throw new NullPointerException("stroke drawable not allowed to be null!");
+        if (strokeBackground == null) {
+            throw new NullPointerException("stroke drawable background not allowed to be null!");
         }
-        setMaxLength(mMaxLength);
+        if (strokeForeground == null) {
+            throw new NullPointerException("stroke drawable foreground not allowed to be null!");
+        }
+        if (stokeError == null) {
+            throw new NullPointerException("stroke drawable error not allowed to be null!");
+        }
+        setMaxLength(maxLength);
         setLongClickable(false);
-        // 去掉背景颜色
         setBackgroundColor(Color.TRANSPARENT);
-        // 不显示光标
         setCursorVisible(false);
     }
 
@@ -84,9 +88,6 @@ public class CodeEditText extends AppCompatEditText {
 //        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, getResources().getDisplayMetrics());
 //    }
 
-    /**
-     * 设置最大长度
-     */
     private void setMaxLength(int maxLength) {
         if (maxLength >= 0) {
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
@@ -98,125 +99,127 @@ public class CodeEditText extends AppCompatEditText {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        // 判断高度是否小于推荐高度
-        if (height < mStrokeHeight) {
-            height = mStrokeHeight;
+        if (height < strokeHeight) {
+            height = strokeHeight;
         }
-
-        // 判断高度是否小于推荐宽度
-        int recommendWidth = mStrokeWidth * mMaxLength + mStrokePadding * (mMaxLength - 1);
+        int recommendWidth = strokeWidth * maxLength + strokePadding * (maxLength - 1);
         if (width < recommendWidth) {
             width = recommendWidth;
         }
-
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(width, widthMode);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, heightMode);
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
-
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        mTextColor = getCurrentTextColor();
+        textColor = getCurrentTextColor();
         setTextColor(Color.TRANSPARENT);
         super.onDraw(canvas);
-        setTextColor(mTextColor);
-        // 重绘背景颜色
+        setTextColor(textColor);
         drawStrokeBackground(canvas);
-        // 重绘文本
         drawText(canvas);
     }
 
-
-    /**
-     * 重绘背景
-     */
     private void drawStrokeBackground(Canvas canvas) {
-        // 绘制方框背景颜色
-        mRect.left = 0;
-        mRect.top = canvas.getHeight() - mStrokeHeight;
-        mRect.right = mStrokeWidth;
-        mRect.bottom = canvas.getHeight();
+        rect.left = 0;
+        rect.top = canvas.getHeight() - strokeHeight;
+        rect.right = strokeWidth;
+        rect.bottom = canvas.getHeight();
         int count = canvas.getSaveCount();
         canvas.save();
-        for (int i = 0; i < mMaxLength; i++) {
-            mStrokeDrawable.setBounds(mRect);
-            mStrokeDrawable.setState(new int[]{android.R.attr.state_enabled});
-            mStrokeDrawable.draw(canvas);
-            float dx = mRect.right + mStrokePadding;
-            // 移动画布
-            canvas.save();
+        for (int i = 0; i < maxLength; i++) {
+            strokeBackground.setBounds(rect);
+            strokeBackground.setState(new int[]{android.R.attr.state_enabled});
+            strokeBackground.draw(canvas);
+            float dx = rect.right + strokePadding;
             canvas.translate(dx, 0);
         }
         canvas.restoreToCount(count);
-        canvas.translate(0, 0);
-
-        // 绘制激活状态的边框
-        // 当前激活的索引
         int activatedIndex = Math.max(0, getEditableText().length());
-        mRect.left = mStrokeWidth * activatedIndex + mStrokePadding * activatedIndex;
-        mRect.right = mRect.left + mStrokeWidth;
-        mStrokeDrawable.setState(new int[]{android.R.attr.state_focused});
-        mStrokeDrawable.setBounds(mRect);
-        mStrokeDrawable.draw(canvas);
-
+        canvas.save();
+        for (int i = 0; i < activatedIndex; i++) {
+            strokeForeground.setBounds(rect);
+            strokeForeground.setState(new int[]{android.R.attr.state_enabled});
+            strokeForeground.draw(canvas);
+            float dx = rect.right + strokePadding;
+            canvas.translate(dx, 0);
+        }
+        canvas.restoreToCount(count);
     }
 
-    /**
-     * 重绘文本
-     */
     private void drawText(Canvas canvas) {
         int count = canvas.getSaveCount();
-        canvas.translate(0, 0);
         int length = getEditableText().length();
         for (int i = 0; i < length; i++) {
             String text = String.valueOf(getEditableText().charAt(i));
             TextPaint textPaint = getPaint();
-            textPaint.setColor(mTextColor);
-            // 获取文本大小
-            textPaint.getTextBounds(text, 0, 1, mRect);
-            // 计算(x,y) 坐标
-            int x = mStrokeWidth / 2 + (mStrokeWidth + mStrokePadding) * i - (mRect.centerX());
-            int y = canvas.getHeight() / 2 + mRect.height() / 2;
+            textPaint.setColor(textColor);
+            textPaint.getTextBounds(text, 0, 1, rect);
+            int x = strokeWidth / 2 + (strokeWidth + strokePadding) * i - (rect.centerX());
+            int y = canvas.getHeight() / 2 + rect.height() / 2;
             canvas.drawText(text, x, y, textPaint);
         }
         canvas.restoreToCount(count);
     }
 
     @Override
-    protected void onTextChanged(CharSequence text, int start,
-                                 int lengthBefore, int lengthAfter) {
+    protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
-
-        // 当前文本长度
         int textLength = getEditableText().length();
-
-        if (textLength == mMaxLength) {
+        if (textLength == maxLength) {
             hideSoftInput();
-            if (mOnInputFinishListener != null) {
-                mOnInputFinishListener.onTextFinish(getEditableText().toString(), mMaxLength);
+        }
+        if (onTextChangeListener != null) {
+            if (!(lengthAfter == 0 && lengthBefore == maxLength)) {
+                onTextChangeListener.onTextChange(getEditableText().toString(), textLength);
+            }
+            if (textLength == maxLength) {
+                onTextChangeListener.onTextFinish(getEditableText().toString(), maxLength);
             }
         }
-
     }
 
-
-    public void hideSoftInput() {
+    private void hideSoftInput() {
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null)
             imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    /**
-     * 设置输入完成监听
-     */
-    public void setOnTextFinishListener(OnTextFinishListener onInputFinishListener) {
-        this.mOnInputFinishListener = onInputFinishListener;
+    public void setOnTextChangeListener(OnTextChangeListener onTextChangeListener) {
+        this.onTextChangeListener = onTextChangeListener;
+    }
+
+    public void setStokeError() {
+        strokeForeground = stokeError;
+        TranslateAnimation animation = new TranslateAnimation(-strokePadding, strokePadding, 0, 0);
+        animation.setDuration(100);
+        animation.setRepeatCount(2);
+        animation.setRepeatMode(REVERSE);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                setText(null);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        startAnimation(animation);
+    }
+
+    public void resetStokeError() {
+        strokeForeground = strokeActive;
     }
 }

@@ -11,10 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dust.app.R;
+import com.dust.app.activity.fragment.PwdLoginFragment;
+import com.dust.app.activity.fragment.SMSLoginFragment;
 import com.dust.app.bean.Constant;
 import com.dust.app.databinding.ActivityLoginBinding;
-import com.dust.app.fragment.PwdLoginFragment;
-import com.dust.app.fragment.SMSLoginFragment;
 import com.dust.app.wxapi.WXEntryActivity;
 
 public class LoginActivity extends AppCompatActivity {

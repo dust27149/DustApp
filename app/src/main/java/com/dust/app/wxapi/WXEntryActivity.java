@@ -15,9 +15,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dust.app.R;
+import com.dust.app.activity.fragment.WeChatFragment;
 import com.dust.app.bean.Constant;
 import com.dust.app.databinding.ActivityWeChatEntryBinding;
-import com.dust.app.fragment.WeChatFragment;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
