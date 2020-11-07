@@ -23,11 +23,12 @@ public class ReactUtils {
         View toastView = toast.getView();
         toastView.setBackground(new ColorDrawable(0xC0000000));
         toastView.setForegroundGravity(View.TEXT_ALIGNMENT_GRAVITY);
-        TextView tv = toastView.findViewById(android.R.id.message);
-        tv.setMaxLines(2);
-        tv.setTextColor(Color.parseColor("#FFFFFF"));
-        tv.setGravity(Gravity.CENTER_HORIZONTAL);
-        tv.setMaxWidth(dpToPx(context, 130));
+        TextView textView = toastView.findViewById(android.R.id.message);
+        textView.setMaxLines(2);
+        textView.setTextSize(12);
+        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setMaxWidth(dpToPx(context, 125));
         toast.show();
     }
 
@@ -37,13 +38,14 @@ public class ReactUtils {
         View toastView = toast.getView();
         toastView.setBackground(new ColorDrawable(0xC0000000));
         toastView.setForegroundGravity(View.TEXT_ALIGNMENT_GRAVITY);
-        TextView tv = toastView.findViewById(android.R.id.message);
-        tv.setMaxLines(2);
-        tv.setTextColor(Color.parseColor("#FFFFFF"));
-        tv.setGravity(Gravity.CENTER_HORIZONTAL);
-        tv.setMaxWidth(dpToPx(context, 130));
-        tv.setCompoundDrawablesWithIntrinsicBounds(0, imgResId, 0, 0);
-        tv.setCompoundDrawablePadding(20);
+        TextView textView = toastView.findViewById(android.R.id.message);
+        textView.setMaxLines(2);
+        textView.setTextSize(12);
+        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setMaxWidth(dpToPx(context, 125));
+        textView.setCompoundDrawablesWithIntrinsicBounds(0, imgResId, 0, 0);
+        textView.setCompoundDrawablePadding(20);
         toast.show();
     }
 
@@ -62,9 +64,10 @@ public class ReactUtils {
         TextView textView = new TextView(context);
         textView.setText(message);
         textView.setMaxLines(2);
+        textView.setTextSize(12);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setMaxWidth(dpToPx(context, 130));
+        textView.setMaxWidth(dpToPx(context, 125));
         LinearLayout.LayoutParams tvParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textView.setLayoutParams(tvParams);
         linearLayout.addView(textView);
