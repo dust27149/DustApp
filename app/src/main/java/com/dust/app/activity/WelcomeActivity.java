@@ -11,10 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dust.app.activity.contract.WelcomeContract;
+import com.dust.app.activity.presenter.WelcomePresenter;
 import com.dust.app.bean.Constant;
 import com.dust.app.databinding.ActivityWelcomeBinding;
-import com.dust.app.fragment.contract.WelcomeContract;
-import com.dust.app.fragment.presenter.WelcomePresenter;
 import com.dust.app.service.UpdateService;
 import com.dust.app.utils.SharedPreferencesUtils;
 
