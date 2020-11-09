@@ -9,4 +9,9 @@
         <attr name="strokeBackground" format="reference" />
         <attr name="strokeForeground" format="reference" />
     </declare-styleable>
+    <declare-styleable name="LoadingButton">
+        <attr name="dotSize" format="dimension" />
+        <attr name="dotPadding" format="dimension" />
+        <attr name="loading" format="boolean" />
+    </declare-styleable>
 </resources>
