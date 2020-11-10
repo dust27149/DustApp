@@ -9,71 +9,73 @@ public class SharedPreferencesUtils {
     private static SharedPreferences sp;
     private static SharedPreferences.Editor editor;
     private static Application context;
+    private static String name;
 
     public static void init(Application application) {
         context = application;
+        name = context.getPackageName();
     }
 
-    public static void putString(String name, String key, String value) {
+    public static void putString(String key, String value) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.putString(key, value).apply();
     }
 
-    public static String getString(String name, String key, String defaultValue) {
+    public static String getString(String key, String defaultValue) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         return sp.getString(key, defaultValue);
     }
 
 
-    public static void putInt(String name, String key, int value) {
+    public static void putInt(String key, int value) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.putInt(key, value).apply();
     }
 
 
-    public static int getInt(String name, String key, int defaultValue) {
+    public static int getInt(String key, int defaultValue) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         return sp.getInt(key, defaultValue);
     }
 
 
-    public static void putFloat(String name, String key, float value) {
+    public static void putFloat(String key, float value) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.putFloat(key, value).apply();
     }
 
 
-    public static float getFloat(String name, String key, float defaultValue) {
+    public static float getFloat(String key, float defaultValue) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         return sp.getFloat(key, defaultValue);
     }
 
-    public static void putLong(String name, String key, long value) {
+    public static void putLong(String key, long value) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.putLong(key, value).apply();
     }
 
-    public static float getLong(String name, String key, long defaultValue) {
+    public static float getLong(String key, long defaultValue) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         return sp.getLong(key, defaultValue);
     }
 
-    public static void putBoolean(String name, String key, boolean value) {
+    public static void putBoolean(String key, boolean value) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.putBoolean(key, value).apply();
     }
 
-    public static boolean getBoolean(String name, String key, boolean defaultValue) {
+    public static boolean getBoolean(String key, boolean defaultValue) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         return sp.getBoolean(key, defaultValue);
     }
 
-    public static void remove(String name, String key) {
+    public static void remove(String key) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
         editor.remove(key).apply();

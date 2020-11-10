@@ -1,6 +1,4 @@
-package com.dust.app.bean;
-
-import com.dust.app.base.Response;
+package com.dust.app.retrofit.response;
 
 public class CommonResponse<T> extends Response {
 

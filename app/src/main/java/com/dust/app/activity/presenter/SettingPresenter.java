@@ -33,7 +33,7 @@ public class SettingPresenter implements SettingContract.Presenter {
         if (Pattern.matches(Constant.IP_PATTERN, server) || Pattern.matches(Constant.IP_PORT_PATTERN, server) || Pattern.matches(Constant.HOSTNAME_PATTERN, server)) {
             Constant.HOSTNAME = server;
             Log.i(TAG, "HOSTNAME changed to" + server);
-            SharedPreferencesUtils.putString("setting", "hostname", server);
+            SharedPreferencesUtils.putString("hostname", server);
             view.saveSettingsSuccess();
         } else {
             view.showToast("服务器地址错误！请重新检查！");

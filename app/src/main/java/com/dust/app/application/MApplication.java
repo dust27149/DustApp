@@ -7,7 +7,6 @@ import android.util.Log;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
-import com.dust.app.utils.PackageUtils;
 import com.dust.app.utils.SharedPreferencesUtils;
 
 public class MApplication extends Application {
@@ -18,7 +17,6 @@ public class MApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SharedPreferencesUtils.init(this);
-        PackageUtils.init(this);
         initCloudChannel(this);
     }
 

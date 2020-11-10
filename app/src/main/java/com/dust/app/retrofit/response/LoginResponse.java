@@ -1,6 +1,6 @@
-package com.dust.app.bean;
+package com.dust.app.retrofit.response;
 
-import com.dust.app.base.Response;
+import com.dust.app.bean.UserInfo;
 
 public class LoginResponse extends Response {
 

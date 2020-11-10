@@ -1,4 +1,4 @@
-package com.dust.app.base;
+package com.dust.app.retrofit.response;
 
 public class Response {
 

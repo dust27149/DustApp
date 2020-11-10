@@ -1,10 +1,10 @@
-package com.dust.app.api;
+package com.dust.app.retrofit.api;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dust.app.base.Response;
-import com.dust.app.bean.CommonResponse;
-import com.dust.app.bean.LoginResponse;
 import com.dust.app.bean.UserInfo;
+import com.dust.app.retrofit.response.CommonResponse;
+import com.dust.app.retrofit.response.LoginResponse;
+import com.dust.app.retrofit.response.Response;
 
 import java.util.List;
 

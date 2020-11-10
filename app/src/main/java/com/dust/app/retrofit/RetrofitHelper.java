@@ -1,8 +1,8 @@
 package com.dust.app.retrofit;
 
-import com.dust.app.api.AccountService;
-import com.dust.app.api.AppService;
 import com.dust.app.bean.Constant;
+import com.dust.app.retrofit.api.AccountService;
+import com.dust.app.retrofit.api.AppService;
 
 import java.util.concurrent.TimeUnit;
 

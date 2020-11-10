@@ -6,7 +6,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_setting"
-        android:name="com.dust.app.fragment.SettingFragment"
+        android:name="com.dust.app.activity.fragment.SettingFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_version"
@@ -16,7 +16,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_version"
-        android:name="com.dust.app.fragment.VersionFragment"
+        android:name="com.dust.app.activity.fragment.VersionFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

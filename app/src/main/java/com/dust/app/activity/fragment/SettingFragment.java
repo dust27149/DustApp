@@ -54,7 +54,7 @@ public class SettingFragment extends Fragment implements SettingContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String server = SharedPreferencesUtils.getString("setting", "hostname", null);
+        String server = SharedPreferencesUtils.getString("hostname", null);
         if (server == null) {
             binding.edtServer.setText(Constant.DEFAULT_HOSTNAME);
         } else {

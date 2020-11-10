@@ -1,24 +1,18 @@
 package com.dust.app.utils;
 
-import android.app.Application;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 public class PackageUtils {
 
-    private static Application context;
-
-    public static void init(Application application) {
-        context = application;
-    }
-
     /**
      * 获取App名称
      *
      * @return App名称
      */
-    public static String getAppName() {
+    public static String getAppName(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
             PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(), 0);
@@ -36,7 +30,7 @@ public class PackageUtils {
      *
      * @return 版本名称
      */
-    public static String getVersionName() {
+    public static String getVersionName(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
             PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(), 0);
@@ -52,7 +46,7 @@ public class PackageUtils {
      *
      * @return 版本号
      */
-    public static int getVersionCode() {
+    public static int getVersionCode(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
             PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(), 0);

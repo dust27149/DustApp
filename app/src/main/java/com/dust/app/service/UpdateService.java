@@ -48,7 +48,7 @@ public class UpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand");
-        checkUpdate(PackageUtils.getVersionName());
+        checkUpdate(PackageUtils.getVersionName(this));
         return super.onStartCommand(intent, flags, startId);
     }
 

@@ -58,8 +58,8 @@ public class VersionFragment extends Fragment implements VersionContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.tvAppVersion.setText(PackageUtils.getVersionName());
-        binding.tvCheckUpdate.setOnClickListener(l -> presenter.checkUpdate(Constant.APP_ID, PackageUtils.getVersionName()));
+        binding.tvAppVersion.setText(PackageUtils.getVersionName(activity));
+        binding.tvCheckUpdate.setOnClickListener(l -> presenter.checkUpdate(Constant.APP_ID, PackageUtils.getVersionName(activity)));
     }
 
     @Override

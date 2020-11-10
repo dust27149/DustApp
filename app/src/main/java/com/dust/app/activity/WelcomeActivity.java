@@ -67,7 +67,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
     }
 
     private void initData() {
-        String server = SharedPreferencesUtils.getString("setting", "hostname", null);
+        String server = SharedPreferencesUtils.getString("hostname", null);
         if (server != null) {
             Constant.HOSTNAME = server;
         }
@@ -80,7 +80,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                String REFRESH_TOKEN = null;// todo
+                String REFRESH_TOKEN = SharedPreferencesUtils.getString("REFRESH_TOKEN", null);
                 Log.e(TAG, "refresh token");
                 if (REFRESH_TOKEN != null) {
                     presenter.refreshToken(REFRESH_TOKEN);
