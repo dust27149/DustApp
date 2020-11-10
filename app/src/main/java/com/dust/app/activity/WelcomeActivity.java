@@ -18,6 +18,8 @@ import com.dust.app.databinding.ActivityWelcomeBinding;
 import com.dust.app.service.UpdateService;
 import com.dust.app.utils.SharedPreferencesUtils;
 
+import static com.dust.app.utils.SystemUtils.setStatusBarFullTransparent;
+
 public class WelcomeActivity extends AppCompatActivity implements WelcomeContract.View {
 
     private final String TAG = WelcomeActivity.class.getSimpleName();
@@ -30,6 +32,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setStatusBarFullTransparent(this);
         new WelcomePresenter(this);
         initData();
         initView();
