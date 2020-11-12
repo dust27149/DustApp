@@ -28,7 +28,6 @@ public class ReactUtils {
         textView.setTextSize(12);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setMaxWidth(dpToPx(context, 125));
         toast.show();
     }
 
@@ -41,9 +40,8 @@ public class ReactUtils {
         TextView textView = toastView.findViewById(android.R.id.message);
         textView.setMaxLines(2);
         textView.setTextSize(12);
-        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setTextColor(Color.WHITE);
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setMaxWidth(dpToPx(context, 125));
         textView.setCompoundDrawablesWithIntrinsicBounds(0, imgResId, 0, 0);
         textView.setCompoundDrawablePadding(20);
         toast.show();
@@ -53,7 +51,7 @@ public class ReactUtils {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setBackground(new ColorDrawable(0xC0000000));
         linearLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        linearLayout.setPadding(dpToPx(context, 20), dpToPx(context, 10), dpToPx(context, 20), dpToPx(context, 10));
+        linearLayout.setPadding(dpToPx(context, 10), dpToPx(context, 10), dpToPx(context, 10), dpToPx(context, 10));
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         LoadingView loadingView = new LoadingView(context);
@@ -65,10 +63,10 @@ public class ReactUtils {
         textView.setText(message);
         textView.setMaxLines(2);
         textView.setTextSize(12);
-        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setTextColor(Color.WHITE);
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setMaxWidth(dpToPx(context, 125));
         LinearLayout.LayoutParams tvParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tvParams.topMargin = 20;
         textView.setLayoutParams(tvParams);
         linearLayout.addView(textView);
 

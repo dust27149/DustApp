@@ -3,6 +3,7 @@ package com.dust.app.activity.presenter;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dust.app.BuildConfig;
 import com.dust.app.activity.contract.WeChatContract;
 import com.dust.app.bean.Constant;
 import com.dust.app.retrofit.RetrofitHelper;
@@ -11,8 +12,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-import static com.dust.app.bean.Constant.APP_ID;
 
 public class WeChatPresenter implements WeChatContract.Presenter {
 
@@ -40,7 +39,7 @@ public class WeChatPresenter implements WeChatContract.Presenter {
     @Override
     public void loginByWeChat(String code) {
         JSONObject params = new JSONObject();
-        params.put("appId", APP_ID);
+        params.put("appId", BuildConfig.weChatAppID);
         params.put("code", code);
         Disposable disposable = RetrofitHelper.getAccountService().loginByWeChat(params)
                 .subscribeOn(Schedulers.io())

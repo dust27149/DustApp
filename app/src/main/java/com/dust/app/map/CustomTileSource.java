@@ -1,5 +1,7 @@
 package com.dust.app.map;
 
+import com.dust.app.BuildConfig;
+
 import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
@@ -152,7 +154,7 @@ public class CustomTileSource extends TileSourceFactory {
             // 天地图标注
             // return "https://t3.tianditu.gov.cn/DataServer?T=cva_w&x=" + x + "&y=" + y + "&l=" + zoom + "&tk=2ce94f67e58faa24beb7cb8a09780552";
             // 天地图道路png
-            return "https://t6.tianditu.gov.cn/DataServer?T=cia_w&x=" + x + "&y=" + y + "&l=" + zoom + "&tk=ef6151d9f0386f3b2a2fdf1d58fe9b32";
+            return "https://t6.tianditu.gov.cn/DataServer?T=cia_w&x=" + x + "&y=" + y + "&l=" + zoom + "&tk=" + BuildConfig.tianDituToken;
         }
     };
 

@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
+import com.dust.app.BuildConfig;
 import com.dust.app.R;
 import com.dust.app.activity.contract.VersionContract;
 import com.dust.app.activity.presenter.VersionPresenter;
@@ -59,7 +60,7 @@ public class VersionFragment extends Fragment implements VersionContract.View {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.tvAppVersion.setText(PackageUtils.getVersionName(activity));
-        binding.tvCheckUpdate.setOnClickListener(l -> presenter.checkUpdate(Constant.APP_ID, PackageUtils.getVersionName(activity)));
+        binding.tvCheckUpdate.setOnClickListener(l -> presenter.checkUpdate(BuildConfig.weChatAppID, PackageUtils.getVersionName(activity)));
     }
 
     @Override

@@ -27,9 +27,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "DEFAULT_HOSTNAME", "\"192.168.1.187\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "DEFAULT_HOSTNAME", "\"192.168.1.187\""
+        }
+        buildTypes.each {
+            it.buildConfigField 'String', 'weChatAppID', "\"wx4cb5c5eeb3455cde\""
+            it.buildConfigField 'String', 'tianDituToken', "\"dc8b7b8c709615887eb2b3cdf6860e5a\""
+            it.manifestPlaceholders = [
+                    "aliAppID"    : "31715434",
+                    "aliAppSecret": "80bebe75e34401769bb740a35910b57c",
+            ]
         }
     }
     externalNativeBuild {
@@ -51,7 +65,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

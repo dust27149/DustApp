@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dust.app.BuildConfig;
 import com.dust.app.R;
 import com.dust.app.bean.AppInfo;
 import com.dust.app.bean.Constant;
@@ -62,7 +63,7 @@ public class UpdateService extends Service {
     private void checkUpdate(String appVersion) {
         Log.i(TAG, "checkUpdate");
         JSONObject params = new JSONObject();
-        params.put("appId", Constant.APP_ID);
+        params.put("appId", BuildConfig.weChatAppID);
         Disposable disposable = RetrofitHelper.getAppService().getAppInfo(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

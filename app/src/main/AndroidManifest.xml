@@ -36,10 +36,10 @@
 
         <meta-data
             android:name="com.alibaba.app.appkey"
-            android:value="31715434" />
+            android:value="${aliAppID}" />
         <meta-data
             android:name="com.alibaba.app.appsecret"
-            android:value="80bebe75e34401769bb740a35910b57c" />
+            android:value="${aliAppSecret}" />
 
         <activity android:name="com.dust.app.activity.CppActivity" />
         <activity

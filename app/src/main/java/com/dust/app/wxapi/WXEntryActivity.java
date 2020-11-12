@@ -14,9 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dust.app.BuildConfig;
 import com.dust.app.R;
 import com.dust.app.activity.fragment.WeChatFragment;
-import com.dust.app.bean.Constant;
 import com.dust.app.databinding.ActivityWeChatEntryBinding;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -25,8 +25,6 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
-import static com.dust.app.bean.Constant.APP_ID;
 
 public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
 
@@ -106,12 +104,12 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
     }
 
     private void regToWx() {
-        api = WXAPIFactory.createWXAPI(this, Constant.APP_ID, true);
-        api.registerApp(APP_ID);
+        api = WXAPIFactory.createWXAPI(this, BuildConfig.weChatAppID, true);
+        api.registerApp(BuildConfig.weChatAppID);
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                api.registerApp(Constant.APP_ID);
+                api.registerApp(BuildConfig.weChatAppID);
             }
         }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
     }

@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.dust.app.BuildConfig;
 import com.dust.app.activity.contract.SettingContract;
 import com.dust.app.activity.presenter.SettingPresenter;
-import com.dust.app.bean.Constant;
 import com.dust.app.databinding.FragmentSettingBinding;
 import com.dust.app.utils.SharedPreferencesUtils;
 import com.dust.app.utils.SystemUtils;
@@ -56,7 +56,7 @@ public class SettingFragment extends Fragment implements SettingContract.View {
         super.onViewCreated(view, savedInstanceState);
         String server = SharedPreferencesUtils.getString("hostname", null);
         if (server == null) {
-            binding.edtServer.setText(Constant.DEFAULT_HOSTNAME);
+            binding.edtServer.setText(BuildConfig.DEFAULT_HOSTNAME);
         } else {
             binding.edtServer.setText(server);
         }
@@ -68,7 +68,7 @@ public class SettingFragment extends Fragment implements SettingContract.View {
             }
         });
         binding.btnBackgroundAuthority.setOnClickListener(l -> SystemUtils.intentToSetting(activity));
-        binding.btnReset.setOnClickListener(l -> presenter.saveSettings(Constant.DEFAULT_HOSTNAME));
+        binding.btnReset.setOnClickListener(l -> presenter.saveSettings(BuildConfig.DEFAULT_HOSTNAME));
         binding.btnSave.setOnClickListener(l -> presenter.saveSettings(binding.edtServer.getText().toString()));
     }
 

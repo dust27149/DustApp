@@ -2,17 +2,17 @@ package com.dust.app.bean;
 
 import android.location.Location;
 
+import com.dust.app.BuildConfig;
+
 import java.util.regex.Pattern;
 
 public class Constant {
 
-    public static final String DEFAULT_HOSTNAME = "192.168.1.187";
     public static final String IP_PATTERN = "((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)";
     public static final String IP_PORT_PATTERN = "((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d):([0-9]|[1-9]\\d{1,3}|[1-5]\\d{4}|6[0-5]{2}[0-3][0-5])";
     public static final String HOSTNAME_PATTERN = "([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}";
-    public static String HOSTNAME = DEFAULT_HOSTNAME;
+    public static String HOSTNAME = BuildConfig.DEFAULT_HOSTNAME;
 
-    public static final String APP_ID = "wx4cb5c5eeb3455cde";
     public static AppInfo updateInfo;
     public static UserInfo userInfo;
     public static Location location;
@@ -32,7 +32,7 @@ public class Constant {
         } else if (Pattern.matches(HOSTNAME_PATTERN, HOSTNAME)) {
             return "https://" + HOSTNAME;
         }
-        return "http://" + DEFAULT_HOSTNAME + ":8080";
+        return "http://" + BuildConfig.DEFAULT_HOSTNAME + ":8080";
     }
 
     public static String getUpdateServer() {
