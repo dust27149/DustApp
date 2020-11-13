@@ -32,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setStatusBarFullTransparent(this);
+        setStatusBarFullTransparent(this, true);
         new WelcomePresenter(this);
         initData();
         initView();

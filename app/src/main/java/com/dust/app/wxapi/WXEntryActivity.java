@@ -105,7 +105,6 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
 
     private void regToWx() {
         api = WXAPIFactory.createWXAPI(this, BuildConfig.weChatAppID, true);
-        api.registerApp(BuildConfig.weChatAppID);
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

@@ -1,5 +1,6 @@
 package com.dust.app.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -17,10 +18,14 @@ import androidx.annotation.NonNull;
 
 public class SystemUtils {
 
-    public static void setStatusBarFullTransparent(Activity activity) {
+    public static void setStatusBarFullTransparent(Activity activity, boolean isDarkBackground) {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        if (isDarkBackground) {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        } else {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.TRANSPARENT);
     }
@@ -46,6 +51,7 @@ public class SystemUtils {
         return isIgnoring;
     }
 
+    @SuppressLint("BatteryLife")
     public static void requestIgnoreBatteryOptimizations(Context context) {
         try {
             Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
