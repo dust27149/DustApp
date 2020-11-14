@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dust.app.activity.contract.WelcomeContract;
 import com.dust.app.activity.presenter.WelcomePresenter;
-import com.dust.app.bean.Constant;
 import com.dust.app.databinding.ActivityWelcomeBinding;
+import com.dust.app.retrofit.RetrofitHelper;
 import com.dust.app.service.UpdateService;
 import com.dust.app.utils.SharedPreferencesUtils;
 
@@ -72,9 +72,9 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
     private void initData() {
         String server = SharedPreferencesUtils.getString("hostname", null);
         if (server != null) {
-            Constant.HOSTNAME = server;
+            RetrofitHelper.HOSTNAME = server;
         }
-        Log.i(TAG, "SERVER:" + Constant.getMainServer());
+        Log.i(TAG, "SERVER:" + RetrofitHelper.getMainServer());
     }
 
     private void initView() {

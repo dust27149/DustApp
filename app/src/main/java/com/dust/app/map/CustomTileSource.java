@@ -143,7 +143,7 @@ public class CustomTileSource extends TileSourceFactory {
         }
     };
 
-    public static final OnlineTileSourceBase tianDiTuRoadTileSource = new OnlineTileSourceBase("MGRS", 0, 20, 256, "PNG", new String[0]) {
+    public static final OnlineTileSourceBase tianDiTuRoadTileSource = new OnlineTileSourceBase("MGRS", 0, 18, 256, "PNG", new String[0]) {
         @Override
         public String getTileURLString(long pMapTileIndex) {
             int x = MapTileIndex.getX(pMapTileIndex);
@@ -154,7 +154,17 @@ public class CustomTileSource extends TileSourceFactory {
             // 天地图标注
             // return "https://t3.tianditu.gov.cn/DataServer?T=cva_w&x=" + x + "&y=" + y + "&l=" + zoom + "&tk=2ce94f67e58faa24beb7cb8a09780552";
             // 天地图道路png
-            return "https://t6.tianditu.gov.cn/DataServer?T=cia_w&x=" + x + "&y=" + y + "&l=" + zoom + "&tk=" + BuildConfig.tianDituToken;
+            return "https://t6.tianditu.gov.cn/DataServer?T=cia_w&x=" + x + "&y=" + y + "&l=" + zoom + "&tk=" + BuildConfig.tianDiTuToken;
+        }
+    };
+
+    public static final OnlineTileSourceBase tianDiTuTerrainTileSource = new OnlineTileSourceBase("MGRS", 0, 20, 256, "PNG", new String[0]) {
+        @Override
+        public String getTileURLString(long pMapTileIndex) {
+            int x = MapTileIndex.getX(pMapTileIndex);
+            int y = MapTileIndex.getY(pMapTileIndex);
+            int zoom = MapTileIndex.getZoom(pMapTileIndex);
+            return "https://t1.tianditu.gov.cn/ter_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ter&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL=" + x + "&TILEROW=" + y + "&TILEMATRIX=" + zoom + "&tk=" + BuildConfig.tianDiTuToken;
         }
     };
 

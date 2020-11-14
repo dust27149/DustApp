@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dust.app.bean.Constant;
 import com.dust.app.bean.UserStatus;
 import com.dust.app.database.DBOpenHelper;
+import com.dust.app.retrofit.RetrofitHelper;
 import com.dust.app.utils.TimeUtils;
 
 import org.eclipse.paho.mqttv5.client.IMqttToken;
@@ -42,7 +43,7 @@ public class MQTTService extends Service {
     public void onCreate() {
         super.onCreate();
         dbOpenHelper = new DBOpenHelper(this);
-        String serverURI = Constant.getMqttServer();
+        String serverURI = RetrofitHelper.getMqttServer();
         String client_id = "android_client" + Constant.userInfo.id;
         String username = "username";
         String password = "password";

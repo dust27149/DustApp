@@ -3,10 +3,14 @@ package com.dust.app.activity.presenter;
 import android.util.Log;
 
 import com.dust.app.activity.contract.SettingContract;
-import com.dust.app.bean.Constant;
+import com.dust.app.retrofit.RetrofitHelper;
 import com.dust.app.utils.SharedPreferencesUtils;
 
 import java.util.regex.Pattern;
+
+import static com.dust.app.retrofit.RetrofitHelper.HOSTNAME_PATTERN;
+import static com.dust.app.retrofit.RetrofitHelper.IP_PATTERN;
+import static com.dust.app.retrofit.RetrofitHelper.IP_PORT_PATTERN;
 
 public class SettingPresenter implements SettingContract.Presenter {
 
@@ -30,8 +34,8 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void saveSettings(String server) {
-        if (Pattern.matches(Constant.IP_PATTERN, server) || Pattern.matches(Constant.IP_PORT_PATTERN, server) || Pattern.matches(Constant.HOSTNAME_PATTERN, server)) {
-            Constant.HOSTNAME = server;
+        if (Pattern.matches(IP_PATTERN, server) || Pattern.matches(IP_PORT_PATTERN, server) || Pattern.matches(HOSTNAME_PATTERN, server)) {
+            RetrofitHelper.HOSTNAME = server;
             Log.i(TAG, "HOSTNAME changed to" + server);
             SharedPreferencesUtils.putString("hostname", server);
             view.saveSettingsSuccess();

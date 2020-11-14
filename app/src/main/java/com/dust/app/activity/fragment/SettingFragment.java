@@ -15,6 +15,7 @@ import com.dust.app.BuildConfig;
 import com.dust.app.activity.contract.SettingContract;
 import com.dust.app.activity.presenter.SettingPresenter;
 import com.dust.app.databinding.FragmentSettingBinding;
+import com.dust.app.utils.ReactUtils;
 import com.dust.app.utils.SharedPreferencesUtils;
 import com.dust.app.utils.SystemUtils;
 
@@ -91,7 +92,7 @@ public class SettingFragment extends Fragment implements SettingContract.View {
 
     @Override
     public void showToast(String s) {
-        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+        ReactUtils.showCustomToast(activity, s);
     }
 
     @Override

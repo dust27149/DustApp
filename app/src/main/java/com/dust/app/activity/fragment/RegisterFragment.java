@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +17,7 @@ import com.dust.app.R;
 import com.dust.app.activity.contract.RegisterContract;
 import com.dust.app.activity.presenter.RegisterPresenter;
 import com.dust.app.databinding.FragmentRegisterBinding;
+import com.dust.app.utils.ReactUtils;
 
 public class RegisterFragment extends Fragment implements RegisterContract.View {
 
@@ -183,7 +183,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
 
     @Override
     public void showToast(String s) {
-        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
+        ReactUtils.showCustomToast(activity, s);
     }
 
     @Override

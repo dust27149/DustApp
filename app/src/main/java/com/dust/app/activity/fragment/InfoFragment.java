@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.dust.app.activity.contract.InfoContract;
 import com.dust.app.activity.presenter.InfoPresenter;
 import com.dust.app.databinding.FragmentInfoBinding;
+import com.dust.app.utils.ReactUtils;
 
 public class InfoFragment extends Fragment implements InfoContract.View {
 
@@ -77,6 +77,6 @@ public class InfoFragment extends Fragment implements InfoContract.View {
 
     @Override
     public void showToast(String s) {
-        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
+        ReactUtils.showCustomToast(activity, s);
     }
 }

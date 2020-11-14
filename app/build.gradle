@@ -39,7 +39,8 @@ android {
         }
         buildTypes.each {
             it.buildConfigField 'String', 'weChatAppID', "\"wx4cb5c5eeb3455cde\""
-            it.buildConfigField 'String', 'tianDituToken', "\"dc8b7b8c709615887eb2b3cdf6860e5a\""
+            it.buildConfigField 'String', 'tianDiTuServer', "\"api.tianditu.gov.cn\""
+            it.buildConfigField 'String', 'tianDiTuToken', "\"dc8b7b8c709615887eb2b3cdf6860e5a\""
             it.manifestPlaceholders = [
                     "aliAppID"    : "31715434",
                     "aliAppSecret": "80bebe75e34401769bb740a35910b57c",

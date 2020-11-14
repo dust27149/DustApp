@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +26,7 @@ import com.dust.app.databinding.FragmentVersionBinding;
 import com.dust.app.service.InstallService;
 import com.dust.app.utils.NotificationUtils;
 import com.dust.app.utils.PackageUtils;
+import com.dust.app.utils.ReactUtils;
 
 public class VersionFragment extends Fragment implements VersionContract.View {
 
@@ -110,7 +110,7 @@ public class VersionFragment extends Fragment implements VersionContract.View {
 
     @Override
     public void showToast(String s) {
-        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
+        ReactUtils.showCustomToast(activity, s);
     }
 
 }

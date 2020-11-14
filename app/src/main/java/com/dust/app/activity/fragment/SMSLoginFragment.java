@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +19,7 @@ import com.dust.app.activity.MainActivity;
 import com.dust.app.activity.contract.SMSLoginContract;
 import com.dust.app.activity.presenter.SMSLoginPresenter;
 import com.dust.app.databinding.FragmentSmsLoginBinding;
+import com.dust.app.utils.ReactUtils;
 
 public class SMSLoginFragment extends Fragment implements SMSLoginContract.View {
 
@@ -139,6 +139,6 @@ public class SMSLoginFragment extends Fragment implements SMSLoginContract.View 
 
     @Override
     public void showToast(String s) {
-        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
+        ReactUtils.showCustomToast(activity, s);
     }
 }

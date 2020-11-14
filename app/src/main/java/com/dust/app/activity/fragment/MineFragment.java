@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +14,7 @@ import com.dust.app.activity.contract.MineContract;
 import com.dust.app.activity.presenter.MinePresenter;
 import com.dust.app.bean.UserInfo;
 import com.dust.app.databinding.FragmentMineBinding;
+import com.dust.app.utils.ReactUtils;
 
 import java.util.List;
 
@@ -81,6 +81,6 @@ public class MineFragment extends Fragment implements MineContract.View {
 
     @Override
     public void showToast(String s) {
-        Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
+        ReactUtils.showCustomToast(activity, s);
     }
 }
